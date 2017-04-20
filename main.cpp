@@ -1,4 +1,4 @@
-//#include <getch.h>
+ //#include <getch.h>
 #include <stdio.h>
 #include <iostream>
 #include <cstdlib>
@@ -110,6 +110,7 @@ void Draw()
 	for (int i =0; i < width+2; i++)
 		cout << "#";
 	cout << endl;
+	cout << "Score:" << score << endl;
 }
 
 void Input()
@@ -157,8 +158,14 @@ void Logic()
 		y++;
 		break;
 	}
-	if (x > width || x < 0 || y > height || y < 0)
+	if (x > width-1 || x < 0 || y > height-1 || y < 0)
 		gameOver = true;
+	if (x == fruitX && y == fruitY)
+	{
+		score +=10;
+		fruitX = rand() % width;
+	        fruitY = rand() % height;
+	}
 }
 
 
